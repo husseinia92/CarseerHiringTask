@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "eK/q51tfbjHlUzBCwU7c6boTsEQyfte0taoPuoslbGzK0l6S8ZrwzmXIL3rZH3t3t8XuzS5LImp3whIR973T0A==",
+  "success": true,
+  "projectFilePath": "D:\\Outsource Projects\\CarseerHiringTask\\CarseerWebAPP\\CarseerWebAPP\\CarseerWebAPP.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\a.alhusaini\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

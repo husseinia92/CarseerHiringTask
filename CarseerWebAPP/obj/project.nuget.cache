@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "eK/q51tfbjHlUzBCwU7c6boTsEQyfte0taoPuoslbGzK0l6S8ZrwzmXIL3rZH3t3t8XuzS5LImp3whIR973T0A==",
+  "dgSpecHash": "Q4gcwYhGQ8QwQ7zh0vDRNoSOzT2TZBicrNn2pu+RTz9c7Q5vrlY2rdY+jSJi0gTvtnQOZ54yAGRjz04RuXYP9Q==",
   "success": true,
   "projectFilePath": "D:\\Outsource Projects\\CarseerHiringTask\\CarseerWebAPP\\CarseerWebAPP\\CarseerWebAPP.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\a.alhusaini\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\a.alhusaini\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []

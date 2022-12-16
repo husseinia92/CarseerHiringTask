@@ -6,8 +6,19 @@
     <title>@ViewData["Title"] - CarseerWebAPP</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/lib/kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/kendo.material.min.css" rel="stylesheet" />
 </head>
 <body>
+    <script src="~/lib/kendo/scripts/TelerikDropdownlistjquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="~/lib/kendo/scripts/kendo.all.min.js"></script>
+    <script src="~/lib/kendo/scripts/kendo.aspnetmvc.min.js"></script>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -40,9 +51,8 @@
             &copy; 2022 - CarseerWebAPP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/Overlay/loadingoverlay.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

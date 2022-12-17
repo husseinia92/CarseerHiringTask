@@ -84,7 +84,6 @@ D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWe
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\ref\CarseerWebAPP.dll
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.pdb
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.genruntimeconfig.cache
-D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.StaticWebAssets.xml
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\CarseerWebAPP.StaticWebAssets.Pack.cache
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.CarseerWebAPP.Microsoft.AspNetCore.StaticWebAssets.props
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.build.CarseerWebAPP.props

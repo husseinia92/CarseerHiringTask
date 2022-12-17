@@ -3,10 +3,9 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /source
 
 # copy th project file
-COPY *.cproj .
-
+COPY ["CarseerWebAPP.csproj", "."]
 # restore all dependancies
-RUN dotnet restore .*.cproj
+RUN dotnet restore "./CarseerWebAPP.csproj"
 
 # copy & deploy the application files 
 

@@ -52,7 +52,7 @@ installed and the repo will be cloned into your local machine.
 - restore all project dependancies and nuget packages and make sure its ready for running.
 
 ```
-dotnet restore to 
+dotnet restore
 ```
 
 - build the project using the following command :

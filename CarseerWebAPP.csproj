@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\lib\jquery-datatable\" />
+    <Folder Include="wwwroot\lib\kendo\css\NewFolder\" />
   </ItemGroup>
 
 </Project>

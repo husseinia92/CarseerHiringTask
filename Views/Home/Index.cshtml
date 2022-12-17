@@ -1,22 +1,24 @@
 ﻿@model CarseerWebAPP.Models.HomeViewModel
-
 @{
     ViewData["Title"] = "Home Page";
 }
 <link href="~/css/Home.css" rel="stylesheet" />
-<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <div class="text-center">
     <h1 class="display-4">Carseer Makes Filtering</h1>
     <p>use the below filters to get available vehicle types && models upon your search critiria!</p>
 </div>
-@using (Html.BeginForm("Add", "AssignAreas", FormMethod.Post, new { role = "search", id = "searchForm" }))
+@using (Html.BeginForm("", "", FormMethod.Post, new { role = "search", id = "searchForm" }))
 {
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <label>Vehicle Make <i class="text-danger">*</i></label>
-                @Html.DropDownListFor(m => m.SelectedMakeId, Model.ListOfMakes, "Select", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SelectedMakeId, "", new { @class = "text-danger" })
+                @*@Html.TextBoxFor(model => model.make_ID, new { @class = "form-control", @placeholder = "Select" })*@
+                @Html.DropDownListFor(m => m.make_ID, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control" })
+                <!-- for better performance in loading makes dropdown, i performed virtualization methodology for kendo,
+                    to server filter and paginate makes. -->
+                @*@Html.DropDownListFor(m => m.SelectedMakeId, Model.ListOfMakes, "Select", new { @class = "form-control" })*@
+                @Html.ValidationMessageFor(model => model.make_ID, "", new { @class = "text-danger" })
 
             </div>
         </div>
@@ -25,114 +27,179 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>Manufacturing Year<i class="text-danger">*</i></label>
-                @Html.DropDownListFor(m => m.SelectedManufacturingYearId, Model.ListOfManufacturingYear, "Select", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SelectedManufacturingYearId, Model.ListOfManufacturingYear, "", new { @class = "form-control" })
+              
                 @Html.ValidationMessageFor(model => model.SelectedManufacturingYearId, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
     <input type="button" value="Search" class="btn btn-primary" id="btnSave" onclick="search()" />
-    <input type="button" value="Clear" class="btn btn-primary" id="btnClear" onclick="clear()" />
+
 }
-    <!--main-holder -->
-    <div id="vehicle-types" class="d-flex flex-wrap justify-content-center align-items-center custom-hidden">
-        <h4>Vehicle Types</h4>
-        <div class="d-flex flex-wrap col-12">
-            <!-- card 1 starts -->
-            <div class="category category-1 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-1"></div>
-                <img src="~/img/Motorcycle.png" class="img-responsive card-img" />
-                <p class="card-text">Motorcycle</p>
-            </div>
-            <!-- card 1 ends -->
-            <!-- card 2 starts -->
-            <div class="category category-2 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-2"></div>
-                <img src="~/img/PassengerCar.png" class="img-responsive card-img" />
-                <p class="card-text">Passenger Car</p>
-            </div>
-            <!-- card 2 ends -->
-            <!-- card 3 starts -->
-            <div class="category category-3 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-3"></div>
-                <img src="~/img/Truck.png" class="img-responsive card-img" />
-                <p class="card-text">Truck </p>
-            </div>
-            <!-- card 3 ends -->
-            <!-- card 5 starts -->
-            <div class="category category-5 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-5"></div>
-                <img src="~/img/Bus.png" class="img-responsive card-img" />
-                <p class="card-text">Bus</p>
-            </div>
-            <!-- card 5 ends -->
-            <!-- card 6 starts -->
-            <div class="category category-6 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-6"></div>
-                <img src="~/img/Trailer.png" class="img-responsive card-img" />
-                <p class="card-text">Trailer</p>
-            </div>
-            <!-- card 5 ends -->
-            <!-- card 7 starts -->
-            <div class="category category-7 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-7"></div>
-                <img src="~/img/MPV.png" class="img-responsive card-img" />
-                <p class="card-text">Multipurpose Passenger Vehicle (MPV)</p>
-            </div>
-            <!-- card 7 ends -->
-            <!-- card 9 starts -->
-            <div class="category category-9 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-9"></div>
-                <img src="~/img/LSV.png" class="img-responsive card-img" />
-                <p class="card-text">Low Speed Vehicle (LSV)</p>
-            </div>
-            <!-- card 9 ends -->
-            <!-- card 10 starts -->
-            <div class="category category-10 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-10"></div>
-                <img src="~/img/IncompleteVehicle.png" class="img-responsive card-img" />
-                <p class="card-text">Incomplete Vehicle</p>
-            </div>
-            <!-- card 10 ends -->
-            <!-- card 13 starts -->
-            <div class="category category-13 d-flex flex-column justify-content-center align-item-center custom-hidden">
-                <div class="category-header category-header-13"></div>
-                <img src="~/img/OffRoadVehicle.png" class="img-responsive card-img" />
-                <p class="card-text">Off Road Vehicle</p>
-            </div>
-            <!-- card 13 ends -->
+<div id="vehicle-types" class="d-flex flex-wrap justify-content-center align-items-center custom-hidden">
+    <h4>Vehicle Types</h4>
+    <div class="d-flex flex-wrap col-12">
+        <!-- card 1 starts -->
+        <div class="category category-1 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-1"></div>
+            <img src="~/img/Motorcycle.png" class="img-responsive card-img" />
+            <p class="card-text">Motorcycle</p>
         </div>
-    </div>
-    <div id="tableRow" class="row" style="display:none">
-        <div class="col-md-12">
-            <table class="table table-bordered" id="modelsTable">
-                <thead>
-                    <tr>
-                        <th>Model ID</th>
-                        <th>Model Name</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        <!-- card 1 ends -->
+        <!-- card 2 starts -->
+        <div class="category category-2 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-2"></div>
+            <img src="~/img/PassengerCar.png" class="img-responsive card-img" />
+            <p class="card-text">Passenger Car</p>
         </div>
+        <!-- card 2 ends -->
+        <!-- card 3 starts -->
+        <div class="category category-3 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-3"></div>
+            <img src="~/img/Truck.png" class="img-responsive card-img" />
+            <p class="card-text">Truck </p>
+        </div>
+        <!-- card 3 ends -->
+        <!-- card 5 starts -->
+        <div class="category category-5 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-5"></div>
+            <img src="~/img/Bus.png" class="img-responsive card-img" />
+            <p class="card-text">Bus</p>
+        </div>
+        <!-- card 5 ends -->
+        <!-- card 6 starts -->
+        <div class="category category-6 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-6"></div>
+            <img src="~/img/Trailer.png" class="img-responsive card-img" />
+            <p class="card-text">Trailer</p>
+        </div>
+        <!-- card 5 ends -->
+        <!-- card 7 starts -->
+        <div class="category category-7 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-7"></div>
+            <img src="~/img/MPV.png" class="img-responsive card-img" />
+            <p class="card-text">Multipurpose Passenger Vehicle (MPV)</p>
+        </div>
+        <!-- card 7 ends -->
+        <!-- card 9 starts -->
+        <div class="category category-9 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-9"></div>
+            <img src="~/img/LSV.png" class="img-responsive card-img" />
+            <p class="card-text">Low Speed Vehicle (LSV)</p>
+        </div>
+        <!-- card 9 ends -->
+        <!-- card 10 starts -->
+        <div class="category category-10 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-10"></div>
+            <img src="~/img/IncompleteVehicle.png" class="img-responsive card-img" />
+            <p class="card-text">Incomplete Vehicle</p>
+        </div>
+        <!-- card 10 ends -->
+        <!-- card 13 starts -->
+        <div class="category category-13 d-flex flex-column justify-content-center align-item-center custom-hidden">
+            <div class="category-header category-header-13"></div>
+            <img src="~/img/OffRoadVehicle.png" class="img-responsive card-img" />
+            <p class="card-text">Off Road Vehicle</p>
+        </div>
+        <!-- card 13 ends -->
     </div>
+</div>
+<div id="tableRow" class="row" style="display:none">
+    <div class="col-md-12">
+        <table class="table table-bordered" id="modelsTable">
+            <thead>
+                <tr>
+                    <th>Model ID</th>
+                    <th>Model Name</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
 <script>
     //
     $.validator.setDefaults({
         ignore: ""
     });
     //
-    $("#SelectedMakeId").kendoDropDownList({
-            filter: "contains",
-            placeholder:"اختر"
+    $("#make_ID").kendoDropDownList({
+        dataTextField: "make_Name",
+        dataValueField: "make_ID",
+        noDataTemplate: 'No Data!',
+        filter: "contains",
+        placeholder: "Select",
+        minLength: 4,
+        virtual: {
+            itemHeight: 26,
+            valueMapper: function (options) {
+                $.ajax({
+                    url: '@Url.Action("MakesValueMapper","Home")',
+                    type: "GET",
+                    dataType: "jsonp",
+                    data: convertValues(options.value),
+                    success: function (data) {
+                        options.success(data);
+                    }
+                })
+            }
+        },
+        height: 150,
+        dataSource: {
+            transport: {
+                read: function (options) {
+                    $.ajax({
+                        url: '@Url.Action("GetMakes", "Home")',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        type: 'GET',
+                        data: options.data,
+                        success: function (result) {
+                            options.success(result);
+                        }
+                    })
+                }
+            },
+            schema: {
+                data: 'data',
+                total: 'total',
+                fields: [
+                    { field: 'make_Name', type: 'string' },
+                    { field: 'make_ID', type: 'number' },
+                ]
+            },
+            pageSize: 11,
+            Type: "aspnetmvc-ajax",
+            serverPaging: true,
+            serverFiltering: true
+        },
+        optionLabel: {
+            make_Name: "Select",
+            make_ID: "0"
+        },
+        index: 0
+        //filter: "contains",
+        //placeholder: "Select"
     });
+    //
+    function convertValues(value) {
+        var data = {};
+
+        value = $.isArray(value) ? value : [value];
+
+        for (var idx = 0; idx < value.length; idx++) {
+            data["values[" + idx + "]"] = value[idx];
+        }
+
+        return data;
+    }
     //
     $("#SelectedManufacturingYearId").kendoDropDownList({
             filter: "contains",
-            placeholder:"اختر"
+            /*placeholder:"Select"*/
     });
     //
     function search() {
-            debugger
         $("#tableRow").hide();
         $("#vehicle-types").addClass("custom-hidden");
         $(".category").addClass("custom-hidden");
@@ -222,7 +289,9 @@
     }
     //
     function clear() {
-        location.reload();
+        debugger
+        alert("hi")
+        window.location.reload();
     }
     //
 </script>

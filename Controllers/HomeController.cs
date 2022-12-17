@@ -1,5 +1,6 @@
 ﻿using CarseerWebAPP.Helpers;
 using CarseerWebAPP.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -17,11 +18,13 @@ namespace CarseerWebAPP.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
@@ -31,18 +34,57 @@ namespace CarseerWebAPP.Controllers
             return View(model);
         }
 
+        public JsonResult GetMakes()
+        {
+            int pageSize = Convert.ToInt32(_httpContextAccessor.HttpContext.Request.Query["pageSize"]);
+            int skip = Convert.ToInt32(_httpContextAccessor.HttpContext.Request.Query["skip"]);
+            string search = _httpContextAccessor.HttpContext.Request.Query["filter[filters][0][value]"];
+            var countriesList = GetAllMakes();
+            var total = countriesList.Count();
+            var data = countriesList.Skip(skip).Take(pageSize).ToList();
+            if (!string.IsNullOrEmpty(search) && !string.IsNullOrWhiteSpace(search))
+            {
+                var result = countriesList.Where(x => x.Make_Name.ToString().ToLower().Contains(search.ToLower())).ToList();
+                total = result.Count;
+                return Json(new { total = total, data = result });
+
+            }
+            return Json(new { total = total, data = data });
+        }
+
+        public JsonResult MakesValueMapper(int[] values)
+        {
+            var indices = new List<int>();
+            var countryList = GetAllMakes();
+
+            if (values != null && values.Any())
+            {
+                var index = 0;
+
+                foreach (var item in countryList)
+                {
+                    if (values.Contains(item.Make_ID))
+                    {
+                        indices.Add(index);
+                    }
+                    index += 1;
+                }
+            }
+            return Json(indices);
+        }
+
         [HttpPost]
         public JsonResult Search(HomeViewModel model)
         {
             #region Get Vehicle Types by Make Id 
 
-            var vehicleTypes = GetAllVehicleTypesByMakeId(model.SelectedMakeId);
+            var vehicleTypes = GetAllVehicleTypesByMakeId(model.make_ID ?? 0);
 
             #endregion
 
             #region Get Models by Make Id & Manufacturing Year
 
-            var models = GetAllModelsByMakeIdAndManufacturingYear(model.SelectedMakeId,model.SelectedManufacturingYearId);
+            var models = GetAllModelsByMakeIdAndManufacturingYear(model.make_ID ?? 0,model.SelectedManufacturingYearId);
 
             #endregion
 
@@ -71,19 +113,25 @@ namespace CarseerWebAPP.Controllers
         {
             #region Populate Makes List
 
-            var AllMakes = GetAllMakes();
-            if (AllMakes != null && AllMakes.Count > 0)
-            {
-                var setupForMakesSelectList = AllMakes
-                    .Select(s => new SetupViewModel()
-                    {
-                        Id = s.Make_ID,
-                        Description = s.Make_Name
-                    })
-                    .ToList();
+            /*
+             * For Better performance, loading the makes and models will be by 
+             * server filtering and paging using kendo virtualization methodology
+             */
 
-                model.ListOfMakes = new SelectList(setupForMakesSelectList, "Id", "Description", model.SelectedMakeId);
-            }
+            //var AllMakes = GetAllMakes();
+            //if (AllMakes != null && AllMakes.Count > 0)
+            //{
+            //    var setupForMakesSelectList = AllMakes
+            //        .Select(s => new SetupViewModel()
+            //        {
+            //            Id = s.Make_ID,
+            //            Description = s.Make_Name
+            //        })
+            //        .ToList();
+
+            //    model.ListOfMakes = new SelectList(setupForMakesSelectList, "Id", "Description", model.SelectedMakeId);
+            //}
+
             #endregion
 
             #region Populate Manufacturing Years List
@@ -119,6 +167,7 @@ namespace CarseerWebAPP.Controllers
             }
             return lstMakesResult;
         }
+
 
         private List<AllVehicleTypesResultViewModel> GetAllVehicleTypesByMakeId(int Id)
         {

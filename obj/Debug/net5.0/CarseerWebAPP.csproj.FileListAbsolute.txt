@@ -52,7 +52,6 @@ D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWe
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.RazorAssemblyInfo.cache
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.RazorAssemblyInfo.cs
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\CarseerWebAPP.StaticWebAssets.Manifest.cache
-D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\CarseerWebAPP.StaticWebAssets.xml
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\scopedcss\bundle\CarseerWebAPP.styles.css
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.TagHelpers.input.cache
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.TagHelpers.output.cache
@@ -76,7 +75,6 @@ D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWe
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.runtimeconfig.json
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.runtimeconfig.dev.json
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.dll
-D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\ref\CarseerWebAPP.dll
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.pdb
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.Views.dll
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\CarseerWebAPP.Views.pdb
@@ -85,3 +83,10 @@ D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\bin\Debug\net5.0\Kendo.Mvc
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.Views.pdb
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.csproj.CopyComplete
 D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.genruntimeconfig.cache
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\CarseerWebAPP.csproj.AssemblyReference.cache
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\CarseerWebAPP.StaticWebAssets.Pack.cache
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.CarseerWebAPP.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.build.CarseerWebAPP.props
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.CarseerWebAPP.props
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.CarseerWebAPP.props
+D:\Outsource Projects\CarseerHiringTask\CarseerWebAPP\obj\Debug\net5.0\refint\CarseerWebAPP.dll

@@ -104,7 +104,8 @@
         <!-- card 13 ends -->
     </div>
 </div>
-<div id="tableRow" class="row" style="display:none">
+<div id="tableRow" class="row justify-content-center align-items-center" style="display:none">
+     <h4>Vehicle Models</h4>
     <div class="col-md-12">
         <table class="table table-bordered" id="modelsTable">
             <thead>
@@ -129,7 +130,7 @@
         noDataTemplate: 'No Data!',
         filter: "contains",
         placeholder: "Select",
-        minLength: 4,
+        minLength: 2,
         virtual: {
             itemHeight: 26,
             valueMapper: function (options) {
@@ -144,7 +145,7 @@
                 })
             }
         },
-        height: 150,
+        height: 350,
         dataSource: {
             transport: {
                 read: function (options) {
@@ -168,7 +169,7 @@
                     { field: 'make_ID', type: 'number' },
                 ]
             },
-            pageSize: 11,
+            pageSize: 100,
             Type: "aspnetmvc-ajax",
             serverPaging: true,
             serverFiltering: true

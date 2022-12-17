@@ -44,7 +44,7 @@ namespace CarseerWebAPP.Controllers
             var data = countriesList.Skip(skip).Take(pageSize).ToList();
             if (!string.IsNullOrEmpty(search) && !string.IsNullOrWhiteSpace(search))
             {
-                var result = countriesList.Where(x => x.Make_Name.ToString().ToLower().Contains(search.ToLower())).ToList();
+                var result = countriesList.Where(x => x.Make_Name.ToLower().Contains(search.ToLower())).ToList();
                 total = result.Count;
                 return Json(new { total = total, data = result });
 
@@ -84,12 +84,12 @@ namespace CarseerWebAPP.Controllers
 
             #region Get Models by Make Id & Manufacturing Year
 
-            var models = GetAllModelsByMakeIdAndManufacturingYear(model.make_ID ?? 0,model.SelectedManufacturingYearId);
+            var models = GetAllModelsByMakeIdAndManufacturingYear(model.make_ID ?? 0, model.SelectedManufacturingYearId);
 
             #endregion
 
-            return Json(new 
-            { 
+            return Json(new
+            {
                 success = true,
                 vehicleTypes = vehicleTypes,
                 vehicleModels = models
@@ -137,7 +137,7 @@ namespace CarseerWebAPP.Controllers
             #region Populate Manufacturing Years List
 
             var ListOfYearsFrom50sUntilNow = Enumerable.Range(DateTime.Now.Year - 72, 73);
-            var setupForYearsSelectList = ListOfYearsFrom50sUntilNow.Select(s => new SetupViewModel() 
+            var setupForYearsSelectList = ListOfYearsFrom50sUntilNow.Select(s => new SetupViewModel()
             {
                 Id = s,
                 Description = s.ToString()
@@ -145,11 +145,11 @@ namespace CarseerWebAPP.Controllers
             .ToList();
 
             model.ListOfManufacturingYear = new SelectList(setupForYearsSelectList, "Id", "Description", model.SelectedManufacturingYearId);
-            
+
             #endregion
         }
 
-        private List<AllMakesResultViewModel> GetAllMakes() 
+        private List<AllMakesResultViewModel> GetAllMakes()
         {
             var ObjMakes = new AllMakesViewModel();
             var lstMakesResult = new List<AllMakesResultViewModel>();
@@ -161,7 +161,7 @@ namespace CarseerWebAPP.Controllers
             if (MakesApiResponse.IsCompleted && !string.IsNullOrEmpty(MakesApiResponse.Result))
             {
                 ObjMakes = JsonConvert.DeserializeObject<AllMakesViewModel>(MakesApiResponse.Result, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                
+
                 if (ObjMakes != null)
                     lstMakesResult = ObjMakes.Results;
             }
@@ -188,7 +188,7 @@ namespace CarseerWebAPP.Controllers
             return lstVehicleTypesResult;
         }
 
-        private List<AllModelsResultViewModel> GetAllModelsByMakeIdAndManufacturingYear(int Id,int Year)
+        private List<AllModelsResultViewModel> GetAllModelsByMakeIdAndManufacturingYear(int Id, int Year)
         {
             var ObjModels = new AllModelsViewModel();
             var lstModelsResult = new List<AllModelsResultViewModel>();
